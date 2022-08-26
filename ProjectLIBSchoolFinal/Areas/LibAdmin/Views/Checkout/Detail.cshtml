@@ -1,0 +1,13 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<div class="table-responsive">
+    @foreach (var item in Model.Orderses)
+    {
+        
+        <h4>@item.AppUser.Name @item.AppUser.Surname</h4>
+    }
+
+</div>

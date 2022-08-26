@@ -1,0 +1,145 @@
+﻿@model HomeVM
+
+@{
+    ViewData["Title"] = "QuizProses";
+    int QuizNumber = 1;
+}
+
+
+<main>
+    <section id="quiztest">
+        <div class="container ">
+            <div class="col-lg-12">
+                <div class="text p-3 text-center">
+                    <h3>İngilis dili level testi</h3>
+                    <h1>LIB – İngilis dili (Level Test)</h1>
+                </div>
+            </div>
+            <div class="col-lg-7 mt-3">
+                <p>
+                    Siz vaxt itirmədən elə indi öz ingilis dili dil biliyinizi yoxlaya bilirsiniz. Bunun üçün sadəcə
+                    qeydiyyatdan keçib ÖDƏNİŞSİZ şəkildə testdən keçə bilərsiniz. Uğurlar!
+                </p>
+            </div>
+            <div class="col-lg-7 ">
+                @foreach (var item in Model.onlineExams)
+                {
+                    <div class="mt-5 box">
+                        <h3 class="mt-4">@(QuizNumber ++). @item.Question</h3>
+                        <div class="form-check">
+                            <input id="option1" class="form-check-input rb" type="radio" value="@item.option1" name="@item.Qid"
+                               onclick="">
+                            <label class="form-check-label">
+                                @item.option1
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input id="option1" class="form-check-input rb" type="radio" value="@item.option2"
+                               name="@item.Qid" onclick="">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @item.option2
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input id="option1" class="form-check-input rb" type="radio" value="@item.option3"
+                               name="@item.Qid" onclick="">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @item.option3
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input id="option1" class="form-check-input rb" type="radio" value="@item.option4"
+                               name="@item.Qid" onclick="">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                @item.option4
+                            </label>
+                        </div>
+
+                        <label name="@item.Qid" class="rb" style="display:none;font:bold;">Correct answer is <span style="color:forestgreen">@item.Correct</span></label>
+                    </div>
+
+                }
+                <button id="but1" type="submit" class="btn btn-dark mt-4" onclick="displayresults();">SUBMİT QUİZ</button>
+                <label id="lbluseranswer"></label>
+            </div>
+
+
+
+
+        </div>
+    </section>
+</main>
+
+@section scripts{
+<script>
+
+
+        $(document).ready(function (){
+         $("#but1").click(function(){
+             $(".rb").show();
+             $(".rb").attr("disabled",true);
+         })
+    });
+
+    function displayresults(){
+        document.getElementById("lbluseranswer").innerHTML="";
+        var result  = document.getElementsByTagName('input');
+        for (i=0;i<result.length;i++){
+            if(result[i].type=="radio"){
+                if(result[i].checked){
+                    document.getElementById("lbluseranswer").innerHTML += "Q " + result[i].name + ")" +  "Your select answer is : " + result[i].value + "<br/>";
+
+                }
+
+            }
+        }
+    }
+</script>
+    }
+
+
+
+
+
+
+@*
+    <div class="container">
+    @foreach (var item in Model.Questions)
+    {
+    <div class="card" style="margin-bottom:1rem">
+    <div class="card-body">
+    @item.QuestionName
+    </div>
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="">
+    <label class="form-check-label">
+    @item.A
+    </label>
+    </div>
+    <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+    @item.B
+    </label>
+    </div>  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+    @item.C
+    </label>
+    </div>  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+    @item.D
+    </label>
+    </div>  <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+    <label class="form-check-label" for="flexCheckDefault">
+    @item.E
+    </label>
+    </div>
+    </div>
+    }
+    </div>*@
+
+
+

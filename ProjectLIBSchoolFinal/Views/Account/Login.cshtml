@@ -1,0 +1,68 @@
+﻿@model LoginVM
+@{
+    ViewData["Title"] = "Login";
+}
+
+<main>
+    <section id="account">
+        <div class="container">
+            <div class="row mt-5 d-flex justify-content-center">
+                <div class="title">
+                    <p>
+                        Saytımıza xoş gəlmisiniz! Siz hazırda saytımızda qeydiyyatdan keçərək proqramlara yazıla
+                        bilərsiniz, eyni zamanda xarici dilsəviyyənizi yoxlamaq şansınız var. Həmçinin özəl təklif
+                        və məhsullarımız haqqında ilk məlumat almaq və fürsətlərdən yararlanmaq imkanınız var.
+                    </p>
+                </div>
+
+                <div class="col-lg-5 mt-5">
+                    <h3>Hesaba giriş</h3>
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+                    <form method="post">
+                       <div class="loginbox mt-4" >
+                            <div class="number" id="inputlogin">
+                                <label id="labelinput" for="">USERNAME</label><br>
+                                <input asp-for="Username" placeholder="Mobil telefonu daxil edin"> <br />
+                                 <span asp-validation-for="Username" class="text-light ms-5"></span>
+                            </div>
+                            <div class="password" id="inputlogin">
+                                <label for="">ŞİFRƏ</label><br>
+                                <input asp-for="Password" placeholder="Şifrəni daxil edin"> <br />
+                                 <span asp-validation-for="Password" class="text-light ms-5"></span>
+                            </div>
+                            <a asp-controller="account" asp-action="forgotpassword" style="color:white;font-family:Verdana, Geneva, Tahoma, sans-serif;font-weight:600;font-size:14px" class="d-flex justify-content-end me-5">Forgot Password?</a>
+                            <div class="remember mt-4 d-flex">
+                                <div class="checkRemember">
+                                    <input asp-for="RememberMe" id="" class="largeCheck">
+                                </div>
+                                <span>Remember me Lost Password</span>
+                                <div class="btn">
+                                    <button type="submit" class="btn btn-dark">LOGİN</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="socials d-flex mt-3">
+                          <div class="facebooks mt-4">
+                        <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="facebookShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="facebookShare").Value"></i></a>
+                    </div>
+                    <div class="facebooks mt-4 ms-4 pinter">
+                        <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="pinterestShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="pinterestShare").Value"></i></a>
+                    </div>
+                    <div class="facebooks mt-4 ms-4 insta">
+                        <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="instagram").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="instagram").Value"></i></a>
+                    </div>
+                    <div class="facebooks mt-4 ms-4 twit">
+                        <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="twitShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="twitShare").Value"></i></a>
+                    </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>
+
+

@@ -1,0 +1,48 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Order>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="table-responsive">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">Number <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+                <th scope="col">Fullname <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+                <th scope="col">Date <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+                <th scope="col">Phone <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+                <th scope="col">Location <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+
+                <th scope="col">Total Price <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Order order in Model)
+            {
+                <tr>
+                   
+                    <td>@order.Id</td>
+                    <td>@order.AppUser.Name @order.AppUser.Surname</td>
+                    <td>@order.Date.ToString("dd MMMM yyyy")</td>
+                    <td>@order.Phone</td>
+                    <td>@order.Location</td>
+                    <td>@order.TotalPrice AZN</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center">
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+    {
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+    })
+</div>
+
+

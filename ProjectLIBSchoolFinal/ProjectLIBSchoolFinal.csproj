@@ -1,0 +1,111 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220825122307_createdQustionTableonQuiz.cs" />
+    <Compile Remove="Migrations\20220825122307_createdQustionTableonQuiz.Designer.cs" />
+    <Compile Remove="Migrations\20220826075321_createOnlineExamTable.cs" />
+    <Compile Remove="Migrations\20220826075321_createOnlineExamTable.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\LibAdmin\Views\Account\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Account\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Account\Login.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Album\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Album\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Album\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Album\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Branch\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Branch\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Branch\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Branch\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Branch\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Category\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Category\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Category\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Category\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Checkout\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Checkout\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Comment\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Comment\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Course\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Course\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Course\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Course\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Course\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Dashboard\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Graduate\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Graduate\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Graduate\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Graduate\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\PointExam\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\PointExam\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\PointExam\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\PointExam\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Question\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Question\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Question\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Quiz\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Quiz\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Quiz\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Quiz\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Quiz\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Result\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Result\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Result\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Result\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Result\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Setting\Details.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Setting\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Setting\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Shared\_Layout.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Slider\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Slider\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Slider\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Slider\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Slider\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Specialy\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Specialy\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Team\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Team\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Team\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Team\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Vacancy\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Vacancy\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Vacancy\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Write\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Write\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\Write\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\YoutubeGallery\Create.cshtml" />
+    <None Include="Areas\LibAdmin\Views\YoutubeGallery\Delete.cshtml" />
+    <None Include="Areas\LibAdmin\Views\YoutubeGallery\Detail.cshtml" />
+    <None Include="Areas\LibAdmin\Views\YoutubeGallery\Edit.cshtml" />
+    <None Include="Areas\LibAdmin\Views\YoutubeGallery\Index.cshtml" />
+    <None Include="Areas\LibAdmin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\LibAdmin\Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\assets\scss\css\style.css.map" />
+    <None Include="wwwroot\assets\scss\style.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.28" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.28">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="X.PagedList.Mvc.Core" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\LibAdmin\Data\" />
+    <Folder Include="Areas\LibAdmin\Models\" />
+  </ItemGroup>
+
+</Project>

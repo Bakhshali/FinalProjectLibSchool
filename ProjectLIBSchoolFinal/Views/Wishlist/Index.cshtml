@@ -1,0 +1,279 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+
+    List<WishlistItem> wishlistItems = await layoutservice.GetWishlist(User.Identity.Name);
+    List<Comment> comments = await layoutservice.GetComment(User.Identity.Name);
+}
+
+@if (TempData["Comment"] != null)
+{
+    <div style="z-index: 1000; position: absolute; top: 50px; right: 20px; " class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="d-flex justify-content-end" style="background-color:green;opacity:80%;">
+            <div class="toast-body" style="color:white">
+                Your comment send is success!
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+}
+
+<main>
+    <section id="quizinfo">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="aboutquiz mt-5">
+                        <ul class="d-flex justify-content-between ">
+                            <div class="box col-6  text-center"
+                                 style="background-color: #195EC8 ; border-top:solid 4px #385BCE" id="quizboxs">
+                            <li class="favo" style="font-size: 20px;">Favorites</li>
+                    </div>
+                    <div class="boxmidle col-6 text-center" id="quizboxs">
+                        <li class="active" style="font-size: 20px;">Activities</li>
+                    </div>
+                    </ul>
+                </div>
+                <div class="quizimage">
+                </div>
+                <div class="educationFormat mt-5">
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="course">
+        <div class="container">
+            <div class="row mt-2">
+
+                  @if (wishlistItems.Count == 0)
+                    {
+                        <h4 style="font-family:monospace;">İstəklərə hec bir kurs əlavə olunmayıb</h4>
+                    }
+
+                @foreach (WishlistItem item in wishlistItems)
+                {
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 coursefiltershow">
+                        <div data-aos="zoom-in-up" data-aos-delay="50" class="box mt-4">
+                            <div class="price">
+                                <p style="font-family:Arial;font-weight:500">@Math.Ceiling(item.Course.Price - (item.Course.Price * item.Course.Discount.Percent / 100)).00 AZN</p>
+                            </div>
+
+                            <div class="close">
+                                <form method="post">
+                                    <a asp-controller="Wishlist" asp-action="DeleteWishlist" asp-route-id="@item.Course.Id"> <i class="fa-solid fa-xmark"></i></a>
+                                </form>
+                            </div>
+
+                            <div class="image">
+                                <a asp-controller="detail" asp-action="index" asp-route-id="@item.Course.Id"><img src="~/assets/img/courses/@item.Course.Image" alt=""></a>
+                            </div>
+                            <div class="textbox">
+                                <div class="title ms-3 mt-3">
+                                    <span>İngilis dili ümumi</span>
+                                </div>
+                                <div class="btn mt-3">
+                                    <a asp-controller="detail" asp-action="index" asp-route-id="@item.Course.Id" class="btn btn-dark">DAHA ƏTRAFLI</a>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="icons mt-2">
+                                    <span class="me-2 ms-3"><i class="fa-solid fa-comment me-1"></i>0</span>
+                                    <span><i class="fa-solid fa-user me-1"></i>0</span>
+                                </div>
+                                <div class="monthly d-flex justify-content-end me-3">
+                                    <span>
+                                        @if (@item.Course.DiscountId == 1)
+                                        {
+
+                                            <span style="font-family:SanFranciscoRegular, Arial, serif;font-weight: 700;font-size:23px;color:#e9284b">₼@(item.Course.Price)</span>
+                                        }
+                                        else
+                                        {
+                                            <span style="font-family:SanFranciscoRegular, Arial, serif;font-weight: 700;font-size:23px;color:#e9284b"> ₼@(Math.Ceiling(item.Course.Price - (item.Course.Price * item.Course.Discount.Percent / 100))).00</span> <span style="font-family:SanFranciscoRegular, Arial, serif;font-weight: 700;font-size:20px;color:#a4abb5"><del>₼@item.Course.Price</del></span>
+                                        }
+
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+    <style>
+        main #comment .title h2 {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: #273044;
+        }
+
+        main #comment .box {
+            border: solid 1px rgb(210, 210, 210);
+            width: 100%;
+            border-radius: 10px;
+        }
+
+            main #comment .box img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            main #comment .box textarea {
+                width: 94%;
+                border: none;
+                padding-left: 20px;
+                padding-top: 10px;
+            }
+
+                main #comment .box textarea::-moz-placeholder {
+                    font-family: Verdana, Geneva, sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+
+                main #comment .box textarea:-ms-input-placeholder {
+                    font-family: Verdana, Geneva, sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+
+                main #comment .box textarea::placeholder {
+                    font-family: Verdana, Geneva, sans-serif;
+                    font-size: 15px;
+                    font-weight: 400;
+                }
+
+            main #comment .box textarea,
+            main #comment .box select {
+                background-color: #F0F2F5;
+            }
+
+                main #comment .box textarea:focus {
+                    background-color: #F0F2F5;
+                    outline: none !important;
+                    border: 2px solid rgb(236, 236, 236);
+                }
+
+            main #comment .box .btn button {
+                width: 100%;
+                border-radius: 40px;
+                font-size: 14px;
+                font-weight: 600;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+
+        main #comment .text span {
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 14px;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        main #comment .text i {
+            font-size: 19px;
+            color: #0B80A5;
+        }
+
+        main #comment .commentbox {
+            background-color: white;
+            width: 100%;
+        }
+
+            main #comment .commentbox img {
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            main #comment .commentbox .usercomment a {
+                text-decoration: none;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 15px;
+                font-weight: 600;
+                color: #555555;
+            }
+
+            main #comment .commentbox .usercomment span {
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                font-size: 14px;
+                font-weight: 600;
+                color: #767676;
+            }
+
+            main #comment .commentbox .usercomment p {
+                font-family: Verdana, Geneva, sans-serif;
+                font-size: 16px;
+                font-style: italic;
+            }
+    </style>
+
+    <section id="comment">
+        <div class="container">
+            <div class="row">
+                <div class="title">
+                    <h2>Member Activities</h2>
+                </div>
+                <div class="col-lg-12 box row p-5 mt-4">
+                    <div class="col-lg-1 col-md-3 col-sm-2">
+                        <div class="image mt-3">
+                            <img src="~/assets/img/stm_lms_avatar1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-11 col-md-8 col-sm-8">
+                        <form method="post">
+                            <div class="sendcomment mt-5">
+                                <textarea asp-for="Comment.Subject" rows="6" placeholder="Rəyiniz nədir?"></textarea> <br />
+                                <span asp-validation-for="Comment.Subject"></span>
+                            </div>
+                            <div class="btn">
+                                <button class="btn btn-primary" type="submit">GÖNDƏRİN</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                @if (comments.Count == 0)
+                {
+                    <div class="text mt-5">
+                        <i class="fa-solid fa-circle-info me-2"></i> <span>
+                            Təəssüf ki, heç bir aktivlik tapılmadı.
+                            İlk rəyini bizimlə bölüş.
+                        </span>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-10 p-5 row mt-5" style="background-color:#EFF0F2;width:100%">
+                        @foreach (var item in comments)
+                        {
+
+                            <div class="col-6 commentbox p-5 row mt-3">
+                                <div class="col-lg-1 col-md-3 col-sm-2">
+                                    <div class="image">
+                                        <img src="~/assets/img/stm_lms_avatar1.png" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-6 col-sm-6 usercomment">
+                                    <a>@item.AppUser.UserName</a> <span>posted an update</span>
+                                    <p class="mt-3">@item.Subject</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section>
+
+
+</main>
+
+@section scripts{
+<script src="~/assets/js/wishlist.js"></script>
+}

@@ -1,0 +1,50 @@
+﻿@model Graduate
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<div class="m-4">
+    @if (Model.IsChoose == true)
+    {
+        <div>
+            <h4>Seçilmiş tələbədir</h4>
+        </div>
+    }
+    <div>
+        <h4>Image</h4>
+        <img style="width:400px;height:250px" src="~/assets/img/students/@Model.Image">
+    </div>
+    <div>
+        <h4 class="mt-3">Fullname</h4>
+        <p>@Model.Name @Model.Surname </p>
+    </div>
+    <div>
+        <h4>Vəzifəsi</h4>
+        <p>@Model.Position</p>
+    </div>
+    <div>
+        <h4>İşlədiyi yer</h4>
+        <p>@Model.Work</p>
+    </div>
+    <div>
+        <h4>Master</h4>
+        <p>@Model.Master</p>
+    </div>
+    <div>
+        <h4>Universitet</h4>
+        <p>@Model.University</p>
+    </div>
+    <div>
+        <h4>Ölkə</h4>
+        <p>@Model.Country.Name</p>
+    </div>
+
+    <div>
+        <form method="post">
+            <button class="btn btn-danger mt-2">Delete</button>
+        </form>
+    </div>
+</div>
+
+
+

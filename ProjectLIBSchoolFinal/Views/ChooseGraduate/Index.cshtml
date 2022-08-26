@@ -1,0 +1,56 @@
+﻿@model List<Graduate>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<main>
+    <section id="graduates" style="border-top: solid 4px rgb(221, 221, 221);">
+        <div class="container">
+            <div class="row mt-5">
+                <h3>Seçilmiş Məzunlarımız</h3>
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="box mt-5">
+                            <div class="image">
+                                <img src="~/assets/img/students/@item.Image"
+                                 alt="">
+                            </div>
+                            <div class="about">
+                                <h3>@item.Name.Substring(0,1)@(".")@item.Surname</h3>
+                                <div class="info ms-4 d-flex mt-3">
+                                    <ul>
+                                        <li>Vəzifə:</li>
+                                        <li>İş yeri:</li>
+                                        <li>Magistr:</li>
+                                        <li>T.Ocağı:</li>
+                                        <li>Ölkə:</li>
+                                    </ul>
+                                    <ul class="aboutstudent">
+                                        <li>
+                                            <i class="fa-solid fa-check me-2" style="color: #200C6A;"></i>@item.Position
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-check  me-2" style="color: #200C6A;"></i>@item.Work
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-check  me-2" style="color: #200C6A;"></i>@item.Master
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-check  me-2" style="color: #200C6A;"></i>@item.University
+                                        </li>
+                                        <li>
+                                            <i class="fa-solid fa-check  me-2" style="color: #200C6A;"></i>@item.Country.Name
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>
+

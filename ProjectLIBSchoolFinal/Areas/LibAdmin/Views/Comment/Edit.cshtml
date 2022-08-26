@@ -1,0 +1,28 @@
+﻿@model Comment
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="m-3 mt-5">
+    <div class="title">
+        <h2 style="color:#273044"><span style="color:#FF0000">#</span> Düzəliş et</h2>
+    </div>
+    <h3 class="mt-4">İstifadəçi: @Model.AppUser.UserName</h3>
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        <div>
+            <span style="font-size:18px">Rəy</span> <br />
+            <input asp-for="Subject" class="form-control"> <br />
+            <span class="text-danger" asp-validation-for="Subject"></span>
+        </div>
+        <div>
+            <span style="font-size:18px">Saytda görsənsin?</span> <br />
+            <input asp-for="Status" style="width:20px;height:20px">
+            <span class="text-danger" asp-validation-for="Status"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success mt-3">Yadda saxla</button>
+        </div>
+    </form>
+</div>
+

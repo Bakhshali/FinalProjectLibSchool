@@ -1,0 +1,207 @@
+﻿@model HomeVM
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<main>
+    <section id="title-service" class="mt-3 p-5">
+        <h1 lang="tr">@Model.Course.Name</h1>
+        <p>@Model.Course.SubName</p>
+    </section>
+    <section id="transition">
+        <div class="container">
+            <div class="row p-1">
+                <div class="text">
+                    <a asp-controller="home" asp-action="index"><span>HOME</span></a><i class="fa-solid fa-angle-right ms-2 me-2"></i>
+                    <a><span style="text-transform:uppercase" lang="tr">@Model.Course.Name</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="addedBasket" class="d-none">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="box mt-5 d-flex">
+                        <div class="col-lg-9">
+                            <div class="text mt-2 ms-4 mb-4">
+                                <i class="fa-solid fa-check mt-4 me-2"></i><span class="mt-4"> İCRA OLUNDU.</span>
+                                <span style="color: #273044;">
+                                    “IELTS PROQRAM KURSU” KURSU SƏBƏTİNİZƏ ƏLAVƏ
+                                    OLUNDU.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="btn mt-3">
+                                <a href="./basket.html" class="btn btn-dark">SƏBƏTƏ BAX</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="detailcourse">
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-lg-8">
+                    <div class="title">
+                        <h2>@Model.Course.Name</h2>
+                    </div>
+                    <div class="category d-flex mt-4">
+                        <div class="icon mt-2">
+                            <i class="fa-regular fa-bookmark"></i>
+                        </div>
+                        <div class="text ms-3">
+                            <span>Kateqoriya:</span> <br>
+                            @foreach (Category category in Model.Categories.FindAll(c => c.Id == @Model.Course.CategoryId))
+                            {
+                                <a href="" style="text-transform:uppercase" lang="tr">@category.Name / </a>  <a href="" style="text-transform:uppercase" lang="tr">@Model.Course.Name</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="images mt-4">
+                        <img src="~/assets//img/courses/@Model.Course.Image"
+                             alt="">
+                    </div>
+                    <div class="infocourse mt-5">
+                        @if (@Model.Course.İnformation != null)
+                        {
+                            <strong>
+                                <img width="20px" src="~/assets/img/1f538.svg" alt="">
+                                @if (@Model.Course.SubName != null)
+                                {
+                                    @( @Model.Course.Name + " proqramı - " + (@Model.Course.SubName.ToLower()))
+                                    ;
+                                    ;
+                                }
+                                else
+                                {
+                                    @( @Model.Course.Name + " proqramı  -")
+                                    ;
+                                }
+                                ilkin məlumat:
+                            </strong>
+                        }
+                    </div>
+                    <p>
+                        @Model.Course.İnformation
+                    </p>
+
+                    <div class="infocourse mt-5">
+                        <strong>
+                            <img width="20px" src="~/assets/img/1f538.svg" alt="">
+                            @if (@Model.Course.SubName == null)
+                            {
+                                @Model.Course.Name
+
+                            }
+                            else
+                            {
+                                @Model.Course.SubName
+                            }
+                            proqramına
+                            nə aiddir?
+                        </strong>
+                    </div>
+                    <ul>
+                        <li>
+                            <strong>
+                                @if (@Model.Course.BelongTitle != null)
+                                {
+                                    @(Model.Course.BelongTitle + " – ")
+                                }
+                            </strong>@Model.Course.BelongText
+                        </li>
+                    </ul>
+                    <p>
+                        Yuxarıda qeyd olunduğu kimi əlavə 5 dəfə danışıq dərsində iştirak və ev tapşırıqlarınızı
+                        kabinetdə işləmək fürsəti Sizin <strong>SÜRƏTLİ</strong> və <strong>EFFEKTİV</strong>
+                        şəkildə ingilis dilində danışmağınızı təmin edəcək! Eyni zamanda xarici dildə Sizinlə
+                        ünsiyyət quracaq müəllimlər xarici dil mühitini yaşamağınıza yardım edəcək.
+                    </p>
+
+                    <div class="infocourse mt-5">
+                        <strong>
+                            <img width="20px" src="~/assets/img/1f538.svg" alt=""> @if (@Model.Course.SubName == null)
+                            {
+                                @Model.Course.Name
+
+                            }
+                            else
+                            {
+                                @Model.Course.SubName
+                            } proqramına
+                            qoşulma şərtləri:
+                        </strong>
+                    </div>
+
+                    <p>
+                        @Model.Course.Condition
+                    </p>
+                    <p>
+                        Keyfiyyətdən əmin olmağınız üçün ilk dərs ödənişsizdir. Sınaq dərsdə iştirak üçün <a href="#">level testi</a> linkinə daxil olub dil səviyyənizi təyin edə, qeydiyyatla bizə
+                        müraciət edə bilərsiniz.
+                    </p>
+
+                    <div class="box p-3 mt-5">
+                        <div class="title">
+                            <strong>@Model.Course.Name müraciəti üçün DİQQƏT!</strong>
+                        </div>
+                        <div class="attention d-flex">
+                            <i class="fa-solid fa-circle-info mt-5 ms-3 me-2"></i>
+                            <ul>
+                                <li>
+                                    LIB Dil Mərkəzinə sayt üzərindən ödəniş etdikdə və ya qeydiyyatdan keçdikdə
+                                    məlumatlarınızın dəqiq qeyd olunmasına diqqət etməniz xahiş olunur.
+                                </li>
+                                <li>
+                                    Ödəniş etdikdə yarana biləsi hər hansı texniki fors-major ehtimalını nəzərə
+                                    alaraq ödənişinizi təsdiq edən online çeki saxlamanız mütləqdir.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <div class="choose ms-3">
+                        <p>QİYMƏT</p>
+
+                        <span>
+                            @Math.Ceiling(@Model.Course.Price - (Model.Course.Price * Model.Course.Discount.Percent / 100)).00 AZN
+                        </span>
+                    </div>
+                    <form method="post">
+                        <div class="btn mt-4 ms-1">
+                            <a asp-controller="basket" asp-action="AddBasket" asp-route-id="@Model.Course.Id" id="submit" class="btn btn-dark">SƏBƏTƏ ƏLAVƏ ET</a>
+                        </div>
+                    </form>
+                    <div class="line mt-4 ms-3"></div>
+
+                    <div class="socials d-flex">
+                        <div class="facebooks mt-4 ms-4">
+                            <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="facebookShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="facebookShare").Value"></i></a>
+                        </div>
+                        <div class="facebooks mt-4 ms-4 pinter">
+                            <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="pinterestShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="pinterestShare").Value"></i></a>
+                        </div>
+                        <div class="facebooks mt-4 ms-4 insta">
+                            <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="instagram").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="instagram").Value"></i></a>
+                        </div>
+                        <div class="facebooks mt-4 ms-4 twit">
+                            <a href="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="twitShare").URL"><i class="@layoutservice.GetDatas().Result.FirstOrDefault(i=>i.Key=="twitShare").Value"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+

@@ -1,0 +1,42 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="table-responsive">
+    <table class="table mt-5">
+  <thead>
+    <tr>
+      <th scope="col">İstifadəçi <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+      <th scope="col">Rəyi <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+
+      <th scope="col">Edit <i style="font-size:14px" class="fa-solid fa-arrow-down"></i></th>
+    </tr>
+  </thead>
+  <tbody>
+   @foreach (Comment comment in Model)
+  {
+      <tr>
+          <td>@comment.AppUser.UserName</td>
+          <td>@comment.Subject</td>
+
+          <td><a asp-controller="comment" asp-action="edit" asp-route-id="@comment.Id" class="btn btn-success" style="border-radius:15px; background-color:#6366F1;border:none; width:50px;"><i class="fa-solid fa-pen-clip"></i></a></td>
+      </tr>
+  }
+ 
+  </tbody>
+</table>
+</div>
+
+
+<div class="d-flex justify-content-center">
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("Index",new {page}),new X.PagedList.Web.Common.PagedListRenderOptionsBase
+    {
+    LiElementClasses=new[] {"page-item"},
+    PageClasses = new[] {"page-link"}
+    })
+</div>
+

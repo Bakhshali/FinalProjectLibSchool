@@ -1,0 +1,60 @@
+﻿@using ProjectLIBSchoolFinal.Models
+@model List<OnlineExam>
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="m-3 mt-5">
+    <form method="post" enctype="multipart/form-data" class="mt-4">
+        @for (int i = 0; i < 1; i++)
+        {
+            <div>
+                <input class="form-control-sual" asp-for="@Model[i].Question" placeholder="Sual"> <br />
+                <span class="text-danger" asp-validation-for="@Model[i].Question"></span>
+            </div>
+            <div>
+                <input id="a-@i" class="form-control" asp-for="@Model[i].option1" placeholder="A"> <br />
+                <span class="text-danger" asp-validation-for="@Model[i].option1"></span>
+            </div>
+
+            <div>
+                <input id="b-@i" class="form-control" asp-for="@Model[i].option2" placeholder="B"> <br />
+                <span class="text-danger" asp-validation-for="@Model[i].option2"></span>
+            </div>
+
+            <div>
+                <input id="c-@i" class="form-control" asp-for="@Model[i].option3" placeholder="C"> <br />
+                <span class="text-danger" asp-validation-for="@Model[i].option3"></span>
+            </div>
+
+            <div>
+                <input id="d-@i" class="form-control" asp-for="@Model[i].option4" placeholder="D"> <br />
+                <span class="text-danger" asp-validation-for="@Model[i].option4"></span>
+            </div>
+            <select asp-for="@Model[i].Correct" class="form-select" aria-label="Dogru variant">
+                <option  class="a-@i" id="opA-@i" value="MirtaA" >A</option>
+                <option  class="b-@i" id="opB-@i" value="">B</option>
+                <option class="c-@i" id="opC-@i" value="">C</option>
+                <option  class="d-@i" id="opD-@i" value="">D</option>
+            </select>
+        }
+
+        <div>
+            <button type="submit" class="btn btn-success mt-3">Yadda saxla</button>
+        </div>
+    </form>
+</div>
+
+<script>
+ let forms=document.getElementsByClassName("form-control")
+ let arrform=[...forms]
+arrform.forEach(x => {
+    x.addEventListener("change", function() {
+       let opp=document.querySelector("."+x.id)
+       opp.value=x.value
+       console.log(opp)
+    })
+})
+
+</script>
+
